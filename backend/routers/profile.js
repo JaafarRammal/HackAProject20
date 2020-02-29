@@ -18,7 +18,10 @@ const avatar = new multer({
     }
 })
 router.post('/profiles/:id/avatar', avatar.single('avatar'), async (req, res) => {
+    console.log('here')
     const buffer = await sharp(req.file.buffer).resize({ width: 250, height: 250 }).png().toBuffer()
+    var base64data = Buffer.from(buffer, 'binary').toString('base64');
+    console.log(base64data)
     const profile = await Profile.findOne({ _id: req.params.id })
     profile.avatar = buffer
     await profile.save()
