@@ -5,6 +5,7 @@ import SearchBar from './Components/SearchBar';
 import './App.css';
 import axios from 'axios';
 import HostInfo from './Components/HostInfo';
+import background from './assets/background.jpg'
 import {
   BrowserRouter as Router,
   Switch,
@@ -30,14 +31,16 @@ const App = () => {
         <Router>
           <Switch>
           <Route exact path = "/">
-          <div className="App m-3">
-              <SearchBar/>
-              <p className = "h6" style={{paddingTop: "20px", paddingBottom: "20px"}}>There are {users.length} hosts found in Lebanon. Choose your favourite one !</p>
-                {users.map((user) => 
-                <div style={{maxHeight: "200px", textAlign: "center", paddingBottom: "20px"}}>
-                  <Card key = {user._id} user = {user}/> 
-                </div>
-                )}
+          <div  style={{backgroundImage: `url(${background})`}}>
+            <div className="App m-3">
+                <SearchBar />
+                <p className = "h6" style={{paddingTop: "20px", paddingBottom: "20px", color: "white"}}>There are {users.length} hosts found in Lebanon. Choose your favourite one !</p>
+                  {users.map((user) => 
+                  <div style={{maxHeight: "200px", textAlign: "center", paddingBottom: "20px"}}>
+                    <Card key = {user._id} user = {user}/> 
+                  </div>
+                  )}
+            </div>
           </div>
           </Route>
           <Route path = "/hosts"> 
