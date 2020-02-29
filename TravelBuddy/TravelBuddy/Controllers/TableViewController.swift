@@ -14,12 +14,13 @@ public struct user{
     var phone: Any
     var email: Any
     var description: Any
+    var image: Any
 }
 
 public var isResult : Bool = false
 public var result : [[String: Any]] = [[:]]
 
-public var currentUser = user(name: "", country: "", phone: "", email: "", description: "")
+public var currentUser = user(name: "", country: "", phone: "", email: "", description: "", image: "")
 
 public var usersData: [user] = [
 //    user(name: "Jaafar Rammal", country: "Lebanon", phone: "123456", email: "jarammal@gmail.com", description: "Hello"),
@@ -30,19 +31,20 @@ public var usersData: [user] = [
 class TableViewController: UITableViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 160
         result = HTTPsendRequest(upcCode: "profiles")!
         while (!isResult) {}
-        var u = user(name: "",country: "",phone: "",email: "",description: "")
+        var u = user(name: "",country: "",phone: "",email: "",description: "", image: "")
         for element in result {
             u.name = element["name"] as! String
             u.country = element["country"] as! String
             u.phone = element["phone"]! as! String
             u.email = element["email"] as! String
             u.description = element["description"] as! String
+            u.image = element["avatar"]
             usersData.append(u)
         }
         // Uncomment the following line to preserve selection between presentations
@@ -143,7 +145,7 @@ class TableViewController: UITableViewController {
                   return
             }
             result = jsonArray
-//            print(result)
+            print(result)
             isResult = true
 
            } catch let parsingError {

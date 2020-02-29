@@ -14,15 +14,18 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var country: UILabel!
     
-    var cellUser = user(name: "",country: "",phone: "",email: "",description: "")
+    var cellUser = user(name: "",country: "",phone: "",email: "",description: "", image: "")
     
     func intializeCell(
         cellUser: user
     ){
         self.cellUser = cellUser
-        self.picture.image = UIImage.init(named: "user1.png")
+        
         self.name.text = cellUser.name as! String
         self.country.text = cellUser.country as! String
+        let dataDecoded:NSData = NSData(base64Encoded: cellUser.image as! String, options: NSData.Base64DecodingOptions(rawValue: 0))!
+        let decodedimage:UIImage = UIImage(data: dataDecoded as Data)!
+        self.picture.image = decodedimage
     }
     
     override func awakeFromNib() {

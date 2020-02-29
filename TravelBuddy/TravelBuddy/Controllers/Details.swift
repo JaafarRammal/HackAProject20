@@ -51,6 +51,10 @@ class Details: UIViewController {
         country.text = currentUser.country as! String
         desc.text = currentUser.description as! String
         
+        let dataDecoded:NSData = NSData(base64Encoded: currentUser.image as! String, options: NSData.Base64DecodingOptions(rawValue: 0))!
+        let decodedimage:UIImage = UIImage(data: dataDecoded as Data)!
+        self.profilePic.image = decodedimage
+        
 
         // Do any additional setup after loading the view.
     }
