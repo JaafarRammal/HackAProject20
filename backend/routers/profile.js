@@ -23,7 +23,7 @@ router.post('/profiles/:id/avatar', avatar.single('avatar'), async (req, res) =>
     var base64data = Buffer.from(buffer, 'binary').toString('base64');
     console.log(base64data)
     const profile = await Profile.findOne({ _id: req.params.id })
-    profile.avatar = buffer
+    profile.avatar = base64data
     await profile.save()
     res.send()
 }, (error, req, res, next) => {
