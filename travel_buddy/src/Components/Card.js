@@ -1,8 +1,13 @@
 import React from 'react';
 import user from '../assets/user1.png';
+import axios from 'axios'
 
 
 function Card() {
+  const getCards = async () => {
+    axios.get('http://3.8.56.93:3000/profiles').then((response)=>{console.log(response)});
+  }
+
   return (
     <div className="card">
       <div className="card-body">
@@ -17,7 +22,7 @@ function Card() {
           <div className="text-rigth" style={{flexGrow: "1", paddingLeft: "40px"}}>
             <p className="text-right" style={{flexGrow: "1"}}>Lebanon</p>
             <div className="text-right">
-              <button className="btn btn-info text-right" type="button">Button</button>
+              <button className="btn btn-info text-right" type="button" onClick={getCards}>Button</button>
             </div>
           </div>
         </div>
