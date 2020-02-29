@@ -16,7 +16,6 @@ function Card() {
         </div>
         <div style={{display: "flex"}}>
           <div style={{paddingLeft: "10px"}}>
-            {/* <div style={{height: "30px"}}></div> */}
             <img style={{verticalAlign: "middle", height:"50px"}} src={user} alt=""/>
           </div>
           <div className="text-rigth" style={{flexGrow: "1", paddingLeft: "40px"}}>

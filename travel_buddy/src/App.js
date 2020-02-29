@@ -18,16 +18,12 @@ const App = () => {
   
   useEffect(() => {
     const getCards = async () => {
-      let res = await axios.get('3.8.56.93:3000/profiles');
+      let res = await axios.get('http://3.8.56.93:3000/profiles');
 
       console.log(res.data);
     }
-    try {
+
     getCards();
-    }
-    catch(e) {
-      console.error(e);
-    }
   },[])
 
   return (
