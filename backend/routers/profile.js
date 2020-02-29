@@ -28,12 +28,7 @@ router.post('/profiles/avatar', avatar.single('avatar'), async (req, res) => {
 router.get('/profiles', async (req, res) => {
     console.log("Received a GET.")
     Profile.find({}, function(err, profiles) {
-        var profilesMap = {}
-        profiles.forEach(function(profile) {
-            profilesMap[profile._id] = profile;
-          });
-      
-          res.send(profilesMap);  
+        res.send(profiles);  
     })
 })
 
