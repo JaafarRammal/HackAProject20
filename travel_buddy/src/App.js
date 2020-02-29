@@ -5,28 +5,16 @@ import SearchBar from './Components/SearchBar';
 import './App.css';
 import axios from 'axios';
 
-let user = {
-  name: String,
-  phone: String,
-  email: String,
-  picture: String,
-  description: String,
-  country: String
-}
-
 const App = () => {
-  
+  const [users, setUsers] = useState([]);
+
   useEffect(() => {
     const getCards = async () => {
       const res = await axios({
         method: 'get',
         url: 'http://3.8.56.93:3000/profiles',
-        headers: {
-          'Cache-Control' : 'no-cache',
-        },
-        withCredentials : true
       });
-      console.log(res);
+      setUsers(res.data);
     }
     getCards();
   },[])
@@ -36,7 +24,9 @@ const App = () => {
         <SearchBar/>
         <p className = "ph-text">There are 500 hosts found in Lebanon. Choose your favourite one !</p>
         <div style={{maxHeight: "100px"}}>
-          <Card />
+          {users.map((user) => 
+            <Card key = {user._id} name = {user.name}/> 
+          )}
         </div>
     </div>
   );
