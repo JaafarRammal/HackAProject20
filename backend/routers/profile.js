@@ -58,7 +58,7 @@ router.get('/profiles/:id', async (req, res) => {
 
 router.get('/profiles', async (req, res) => {
     console.log("Received a GET.")
-    Profile.find({availability: false}, function(err, profiles) {
+    Profile.find({availability: true}, function(err, profiles) {
         res.send(profiles);  
     })
 })
