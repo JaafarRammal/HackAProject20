@@ -14,14 +14,15 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var country: UILabel!
     
+    var cellUser = user(name: "",country: "",phone: "",email: "",description: "")
+    
     func intializeCell(
-        pic: UIImage,
-        name: String,
-        country: String
+        cellUser: user
     ){
-        self.picture.image = pic
-        self.name.text = name
-        self.country.text = country
+        self.cellUser = cellUser
+        self.picture.image = UIImage.init(named: "user1.png")
+        self.name.text = cellUser.name as! String
+        self.country.text = cellUser.country as! String
     }
     
     override func awakeFromNib() {
@@ -31,7 +32,7 @@ class TableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        currentUser = cellUser
         // Configure the view for the selected state
     }
 
