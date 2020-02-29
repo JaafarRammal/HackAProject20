@@ -9,7 +9,7 @@ function Card() {
   }
 
   return (
-    <div className="card">
+    <div className="card" style={{maxWidth: "300px"}}>
       <div className="card-body">
         <div>
             <h4 className="text-right">Jaafar Rammal</h4>
