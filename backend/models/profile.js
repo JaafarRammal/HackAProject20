@@ -20,6 +20,9 @@ const profileSchema = new mongoose.Schema({
     phone: {
         type: Number,
         required: true
+    },
+    avatar: {
+        type: Buffer
     }
 })
 
