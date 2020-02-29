@@ -5,8 +5,17 @@ import SearchBar from './Components/SearchBar';
 import './App.css';
 import axios from 'axios';
 
+let user = {
+  name: String,
+  phone: String,
+  email: String,
+  picture: String,
+  description: String,
+  country: String
+}
 
 const App = () => {
+  
   useEffect(() => {
     const getCards = async () => {
       const res = await axios({
