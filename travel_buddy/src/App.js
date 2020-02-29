@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
 import './Animations.css';
+import Card from './Components/Card'
 
 function App() {
   return (
     <div className="App">
-    
+      <Card />
     </div>
   );
 }
