@@ -1,0 +1,22 @@
+{
+  "name": "hackaproject20",
+  "version": "1.0.0",
+  "description": "Brought to you by Pineapple",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JaafarRammal/HackAProject20.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JaafarRammal/HackAProject20/issues"
+  },
+  "homepage": "https://github.com/JaafarRammal/HackAProject20#readme",
+  "dependencies": {
+    "mongoose": "^5.9.2"
+  }
+}
