@@ -12,14 +12,14 @@ function Card() {
     <div className="card" style={{maxWidth: "300px"}}>
       <div className="card-body">
         <div>
-            <h4 className="text-right">Jaafar Rammal</h4>
+        <h4 className="text-right">{user.name}</h4>
         </div>
         <div style={{display: "flex"}}>
           <div style={{paddingLeft: "10px"}}>
-            <img style={{verticalAlign: "middle", height:"50px"}} src={user} alt=""/>
+            <img style={{verticalAlign: "middle", height:"50px"}} src={pic} alt=""/>
           </div>
           <div className="text-rigth" style={{flexGrow: "1", paddingLeft: "40px"}}>
-            <p className="text-right" style={{flexGrow: "1"}}>Lebanon</p>
+            <p className="text-right" style={{flexGrow: "1"}}>{user.country}</p>
             <div className="text-right">
                 <Link to ={`/hosts?id=${user._id}`}><button className="btn btn-info text-right" type="button">
                 Button</button>

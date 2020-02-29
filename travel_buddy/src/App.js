@@ -30,15 +30,15 @@ const App = () => {
         <Router>
           <Switch>
           <Route exact path = "/">
-              <div className="App m-3">
-                <SearchBar/>
-                <p className = "ph-text">There are 500 hosts found in Lebanon. Choose your favourite one !</p>
-                <div style={{maxHeight: "100px"}}>
-                  {users.map((user) => 
-                    <Card key = {user._id} name = {user.name}/> 
-                  )}
-                </div>  
-            </div>
+          <div className="App m-3">
+              <SearchBar/>
+              <p className = "h6" style={{paddingTop: "20px", paddingBottom: "20px"}}>There are {users.length} hosts found in Lebanon. Choose your favourite one !</p>
+                {users.map((user) => 
+                <div style={{maxHeight: "200px", textAlign: "center", paddingBottom: "20px"}}>
+                  <Card key = {user._id} user = {user}/> 
+                </div>
+                )}
+          </div>
           </Route>
           <Route path = "/hosts"> 
               <HostInfo/>
