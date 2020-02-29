@@ -5,3 +5,47 @@
 .m-high {
     margin-top: 20%;
 }
+
+.flex-h {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-v {
+    display: flex;
+    flex-direction: column;
+}
+
+.cut-t{
+    word-wrap: break-word;
+}
+
+#details-t{
+    line-height: 0.7cm;
+}
+
+#low {
+    bottom: 20px;
+}
+
+.fl-2 {
+    flex-grow: 4;
+}
+
+.bord-b {
+    border-color: rgba(155, 199, 252, 0.8);
+}
+
+.v-al {
+    vertical-align: middle;
+}
+
+.t-ct {
+    text-align: center;
+}
+
+.btn-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
