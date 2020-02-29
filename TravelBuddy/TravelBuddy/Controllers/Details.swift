@@ -15,7 +15,8 @@ class Details: UIViewController {
     @IBOutlet weak var country: UILabel!
     @IBOutlet weak var phone: UIImageView!
     @IBOutlet weak var enveloppe: UIImageView!
-   
+    @IBOutlet weak var chat: UIImageView!
+    
     @IBOutlet weak var desc: UITextView!
     
     //Action
@@ -36,16 +37,27 @@ class Details: UIViewController {
         }
     }
     
+    @objc func message() {
+        print("Message")
+        let sms: String = "sms:\(currentUser.phone)"
+        let strURL: String = sms.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        UIApplication.shared.open(URL.init(string: strURL)!, options: [:], completionHandler: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let cc = UITapGestureRecognizer(target: self, action: #selector(call))
        
         let ee = UITapGestureRecognizer(target: self, action: #selector(email))
+        
+        let mm = UITapGestureRecognizer(target: self, action: #selector(message))
               
         phone.isUserInteractionEnabled = true
         phone.addGestureRecognizer(cc)
         enveloppe.isUserInteractionEnabled = true
         enveloppe.addGestureRecognizer(ee)
+        chat.isUserInteractionEnabled = true
+        chat.addGestureRecognizer(mm)
         
         name.text = currentUser.name as! String
         country.text = currentUser.country as! String

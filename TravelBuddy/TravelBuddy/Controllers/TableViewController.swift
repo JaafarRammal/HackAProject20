@@ -28,16 +28,19 @@ public var usersData: [user] = [
 //    user(name: "Ali Rammal", country: "Lebanon", phone: "123456", email: "jarammal@gmail.com", description: "Hello")
     ]
 
-class TableViewController: UITableViewController {
+class TableViewController: UITableViewController, UISearchBarDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
-        
+    var filtered = usersData
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
         self.tableView.rowHeight = 160
         result = HTTPsendRequest(upcCode: "profiles")!
         while (!isResult) {}
         var u = user(name: "",country: "",phone: "",email: "",description: "", image: "")
+        usersData = []
         for element in result {
             u.name = element["name"] as! String
             u.country = element["country"] as! String
@@ -48,10 +51,24 @@ class TableViewController: UITableViewController {
             usersData.append(u)
         }
         // Uncomment the following line to preserve selection between presentations
-         self.clearsSelectionOnViewWillAppear = false
+        self.clearsSelectionOnViewWillAppear = false
+        filtered = usersData
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        //Looks for single or multiple taps.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+
+        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+        tap.cancelsTouchesInView = false
+
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
 
     // MARK: - Table view data source
@@ -63,20 +80,41 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return usersData.count
+        return filtered.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as! TableViewCell
 
         // Configure the cell...
-        let currentUser: user = usersData[indexPath.item]
+        let currentUser: user = filtered[indexPath.item]
         cell.intializeCell(cellUser: currentUser)
         cell.layer.shadowRadius = 0
         cell.layer.shadowOpacity = 0
         cell.layer.shadowColor = CGColor.init(srgbRed: 0, green: 0, blue: 0, alpha: 1)
         return cell
     }
+    
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        self.searchBar.endEditing(true)
+    }
+
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+
+        filtered = usersData.filter({ (us) -> Bool in
+            let tmp: NSString = us.country as! NSString
+            let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+            return range.location != NSNotFound
+        })
+        if(searchText == ""){
+            filtered = usersData
+        }
+        self.tableView.reloadData()
+    }
+
+
     
     /*
     // Override to support conditional editing of the table view.

@@ -10,10 +10,29 @@ import UIKit
 
 class NewUser: UIViewController {
 
+    @IBOutlet weak var profilePic: UIImageView!
+    @IBOutlet weak var name: UITextField!
+    @IBOutlet weak var country: UITextField!
+    @IBOutlet weak var email: UITextField!
+    @IBOutlet weak var phone: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        .request(.POST, "http://myserver.com", parameters: parameters, encoding: .JSON)
+        .responseJSON { request, response, JSON, error in
+            print(response)
+            print(JSON)
+            print(error)
+        }
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+
+        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+        tap.cancelsTouchesInView = false
+
+        view.addGestureRecognizer(tap)
     }
     
 
