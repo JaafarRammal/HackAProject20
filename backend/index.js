@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const userRouter = require('./routers/profile')
+
 require('./db/mongoose')
 
 const app = express()

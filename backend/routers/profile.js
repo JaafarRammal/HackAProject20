@@ -4,6 +4,8 @@ const router = new express.Router()
 const multer = require('multer')
 const sharp = require('sharp')
 
+const upload = multer({ dest: 'uploads/' })
+
 const avatar = new multer({
     limits: {
         fileSize: 1000000
@@ -15,14 +17,24 @@ const avatar = new multer({
         cb(undefined, true)
     }
 })
-
-router.post('/profiles/avatar', avatar.single('avatar'), async (req, res) => {
+router.post('/profiles/:id/avatar', avatar.single('avatar'), async (req, res) => {
     const buffer = await sharp(req.file.buffer).resize({ width: 250, height: 250 }).png().toBuffer()
-    req.user.avatar = buffer
-    await req.user.save()
+    const profile = await Profile.findOne({ _id: req.params.id })
+    profile.avatar = buffer
+    await profile.save()
     res.send()
 }, (error, req, res, next) => {
     res.status(400).send({ error: error.message })
+})
+
+router.get('/profiles/:id', async (req, res) => {
+    try {
+        const profile = await Profile.findById(req.params.id)    
+        res.send(profile)
+    } catch(e) {
+        res.status(400).send({ error: e })
+    }
+   
 })
 
 router.get('/profiles', async (req, res) => {
@@ -32,12 +44,12 @@ router.get('/profiles', async (req, res) => {
     })
 })
 
-
 router.post('/profiles', async (req, res) => {
     console.log("Received a POST.")
     const profile = new Profile({
         ...req.body,
     })
+
     console.log(profile)
     try {
         await profile.save()
