@@ -1,14 +1,14 @@
 import React from 'react';
 import user from '../assets/user1.png';
-import axios from 'axios'
-
+import {
+  BrowserRouter as Router,
+  Link
+} from "react-router-dom";
 
 function Card() {
-  const getCards = async () => {
-    axios.get('http://3.8.56.93:3000/profiles').then((response)=>{console.log(response)});
-  }
 
   return (
+    <Router>
     <div className="card" style={{maxWidth: "300px"}}>
       <div className="card-body">
         <div>
@@ -21,14 +21,16 @@ function Card() {
           <div className="text-rigth" style={{flexGrow: "1", paddingLeft: "40px"}}>
             <p className="text-right" style={{flexGrow: "1"}}>Lebanon</p>
             <div className="text-right">
-              <button className="btn btn-info text-right" type="button" onClick={getCards}>Button</button>
+                <Link to ={`/hosts?id=${user._id}`}><button className="btn btn-info text-right" type="button">
+                Button</button>
+                </Link>
             </div>
           </div>
         </div>
       </div>
     </div>
     
-    
+    </Router>
   );
 }
 
