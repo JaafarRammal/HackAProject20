@@ -4,8 +4,6 @@ const router = new express.Router()
 const multer = require('multer')
 const sharp = require('sharp')
 
-const upload = multer({ dest: 'uploads/' })
-
 const avatar = new multer({
     limits: {
         fileSize: 1000000
@@ -17,6 +15,7 @@ const avatar = new multer({
         cb(undefined, true)
     }
 })
+
 router.post('/profiles/:id/avatar', avatar.single('avatar'), async (req, res) => {
     console.log('here')
     const buffer = await sharp(req.file.buffer).resize({ width: 250, height: 250 }).png().toBuffer()
@@ -30,7 +29,22 @@ router.post('/profiles/:id/avatar', avatar.single('avatar'), async (req, res) =>
     res.status(400).send({ error: error.message })
 })
 
-router.patch 
+router.patch('/routes/:id', async (req, res) => {
+    const updates = Object.keys(req.body)
+    try {
+        const profile = await Profile.findOne({ _id: req.params.id })
+        if (!profile) {
+            return res.status(404).send()
+        }
+        updates.forEach((update) => {
+            profile[update] = req.body[update]
+        })
+        await profile.save()
+        res.send(profile)
+    } catch(e) {
+        res.status(400).send(e)
+    }
+})
 
 router.get('/profiles/:id', async (req, res) => {
     try {

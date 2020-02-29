@@ -23,6 +23,10 @@ const profileSchema = new mongoose.Schema({
     },
     avatar: {
         type: String
+    },
+    availability: {
+        type: Boolean,
+        required: true
     }
 })
 
