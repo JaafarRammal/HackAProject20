@@ -16,7 +16,7 @@ const Card = ({user}) => {
         </div>
         <div style={{display: "flex"}}>
           <div style={{paddingLeft: "10px"}}>
-            <img style={{verticalAlign: "middle", height:"50px"}} src={pic} alt=""/>
+            <img style={{verticalAlign: "middle", height:"50px"}} src={`data:image/png;base64,${user.avatar.data}`} alt=""/>
           </div>
           <div className="text-rigth" style={{flexGrow: "1", paddingLeft: "40px"}}>
             <p className="text-right" style={{flexGrow: "1"}}>{user.country}</p>

@@ -31,7 +31,7 @@ const App = () => {
         <Router>
           <Switch>
           <Route exact path = "/">
-          <div  style={{backgroundImage: `url(${background})`}}>
+          <div  style={{backgroundImage: `url(${background})`, minHeight: "1000px"}}>
             <div className="App m-3">
                 <SearchBar />
                 <p className = "h6" style={{paddingTop: "20px", paddingBottom: "20px", color: "white"}}>There are {users.length} hosts found in Lebanon. Choose your favourite one !</p>
