@@ -30,6 +30,8 @@ router.post('/profiles/:id/avatar', avatar.single('avatar'), async (req, res) =>
     res.status(400).send({ error: error.message })
 })
 
+router.patch 
+
 router.get('/profiles/:id', async (req, res) => {
     try {
         const profile = await Profile.findById(req.params.id)    
