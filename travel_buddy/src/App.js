@@ -9,16 +9,17 @@ import axios from 'axios';
 const App = () => {
   useEffect(() => {
     const getCards = async () => {
-      let res = await axios.get('3.8.56.93:3000/profiles');
-
-      console.log(res.data);
+      const res = await axios({
+        method: 'get',
+        url: 'http://3.8.56.93:3000/profiles',
+        headers: {
+          'Cache-Control' : 'no-cache',
+        },
+        withCredentials : true
+      });
+      console.log(res);
     }
-    try {
     getCards();
-    }
-    catch(e) {
-      console.error(e);
-    }
   },[])
 
   return (
