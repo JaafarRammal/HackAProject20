@@ -29,7 +29,7 @@ router.post('/profiles/:id/avatar', avatar.single('avatar'), async (req, res) =>
     res.status(400).send({ error: error.message })
 })
 
-router.patch('/routes/:id', async (req, res) => {
+router.patch('/profiles/:id', async (req, res) => {
     const updates = Object.keys(req.body)
     try {
         const profile = await Profile.findOne({ _id: req.params.id })
