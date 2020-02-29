@@ -1,18 +1,22 @@
 import React from 'react';
+import user from '../assets/user1.png';
+
 
 function Card() {
   return (
     <div className="card">
       <div className="card-body">
+        <div>
+            <h4 className="text-right">Jaafar Rammal</h4>
+        </div>
         <div style={{display: "flex"}}>
           <div style={{paddingLeft: "10px"}}>
-            <div style={{height: "20px"}}></div>
-            <img style={{verticalAlign: "middle"}} src="../../assets/user1.png/" alt=""/>
+            {/* <div style={{height: "30px"}}></div> */}
+            <img style={{verticalAlign: "middle", height:"50px"}} src={user} alt=""/>
           </div>
-          <div className="text-left" style={{flexGrow: "1", paddingLeft: "40px"}}>
-            <h4 className="text-right">Jaafar Rammal</h4>
-            <p className-name="text-right" style={{flexGrow: "1"}}>Lebanon</p>
-            <div classNameName="text-right">
+          <div className="text-rigth" style={{flexGrow: "1", paddingLeft: "40px"}}>
+            <p className="text-right" style={{flexGrow: "1"}}>Lebanon</p>
+            <div className="text-right">
               <button className="btn btn-info text-right" type="button">Button</button>
             </div>
           </div>
