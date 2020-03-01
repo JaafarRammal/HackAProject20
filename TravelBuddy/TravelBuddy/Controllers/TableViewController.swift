@@ -36,7 +36,7 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-        self.tableView.rowHeight = 160
+        self.tableView.rowHeight = 100
         result = HTTPsendRequest(upcCode: "profiles")!
         while (!isResult) {}
         var u = user(name: "",country: "",phone: "",email: "",description: "", image: "")

@@ -12,7 +12,8 @@ class MainPage: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        b1.layer.cornerRadius = 15
+        b2.layer.cornerRadius = 15
         // Do any additional setup after loading the view.
     }
     
@@ -26,7 +27,9 @@ class MainPage: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
-
+    @IBOutlet weak var b1: UIButton!
+    @IBOutlet weak var b2: UIButton!
+    
     /*
     // MARK: - Navigation
 
